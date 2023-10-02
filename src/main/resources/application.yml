@@ -3,9 +3,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/jooq
-    username: root
-    password: Aiccdev1!
+#    url: jdbc:tc:mariadb:10.9.2://test
+    url: [jdbc URL]
+    username: [DB username]
+    password: [DB papssword]
     driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:

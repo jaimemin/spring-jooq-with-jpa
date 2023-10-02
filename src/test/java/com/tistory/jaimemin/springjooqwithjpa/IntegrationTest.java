@@ -10,11 +10,11 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 public class IntegrationTest {
 
-    @Container
-    private static final MariaDBContainer<?> mariaDBContainer = new MariaDBContainer<>("mariadb:10.9.2")
-            .withDatabaseName("jooq")
-            .withUsername("test")
-            .withPassword("test");
+//    @Container
+//    private static final MariaDBContainer<?> mariaDBContainer = new MariaDBContainer<>("mariadb:10.9.2")
+//            .withDatabaseName("jooq")
+//            .withUsername("test")
+//            .withPassword("test");
 
     @Test
     public void yourTest() {
