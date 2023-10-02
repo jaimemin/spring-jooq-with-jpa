@@ -24,7 +24,7 @@ import static com.tistory.jaimemin.jooq.code.jooq.tables.Team.TEAM;
 @SpringBootTest
 public class CRUDTest {
 
-    private static int TEAM_CNT = 10000;
+    private static int TEAM_CNT = 100000;
 
     private static int PAGE_SIZE = 1000;
 
@@ -42,7 +42,7 @@ public class CRUDTest {
 
         for (int page = 0; page < (int) Math.ceil((double) TEAM_CNT / PAGE_SIZE); page++) {
             for (int i = 0; i < PAGE_SIZE; i++) {
-                Team team = new Team("Team" + (i * (page + 1) + 1));
+                Team team = new Team("Team" + (i * (page + 1) + 1)); 
 
                 for (int j = 0; j < MEMBER_CNT_PER_TEAM; j++) {
                     Member member = Member.builder()
@@ -59,7 +59,7 @@ public class CRUDTest {
     }
 
     @Test
-    void insertTeams_with_jooq() {
+    void insertTeams_with_jooq_and_jpa() {
         List<TeamRecord> teamRecords = new ArrayList<>();
         List<MemberRecord> memberRecords = new ArrayList<>();
         Map<String, String> memberName2teamName = new HashMap<>();
@@ -84,14 +84,18 @@ public class CRUDTest {
         // Batch insert teams and get generated team IDs
         dslContext.batchInsert(teamRecords).execute();
         // Fetch generated team IDs
-        Result<TeamRecord> generatedTeams = dslContext
-                .selectFrom(TEAM)
-                .where(TEAM.NAME.in(teamNames))
-                .fetch();
+//        Result<TeamRecord> generatedTeams = dslContext
+//                .selectFrom(TEAM)
+//                .where(TEAM.NAME.in(teamNames))
+//                .fetch();
+        List<Team> teams = teamJPARepository.findAllByNameIn(teamNames);
         Map<String, Long> teamName2id = new HashMap<>();
 
-        for (TeamRecord teamRecord : generatedTeams) {
-            teamName2id.put(teamRecord.getName(), teamRecord.getId());
+//        for (TeamRecord teamRecord : generatedTeams) {
+//            teamName2id.put(teamRecord.getName(), teamRecord.getId());
+//        }
+        for (Team team : teams) {
+            teamName2id.put(team.getName(), team.getId());
         }
 
         for (MemberRecord memberRecord : memberRecords) {
