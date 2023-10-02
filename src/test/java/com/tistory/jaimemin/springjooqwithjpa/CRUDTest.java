@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,12 +70,16 @@ public class CRUDTest {
             for (int i = 0; i < PAGE_SIZE; i++) {
                 TeamRecord teamRecord = new TeamRecord();
                 teamRecord.setName("Team" + (i * (page + 1) + 1));
+                teamRecord.setCreatedAt(LocalDateTime.now());
+                teamRecord.setModifiedAt(LocalDateTime.now());
                 teamRecords.add(teamRecord);
                 teamNames.add(teamRecord.getName());
 
                 for (int j = 0; j < MEMBER_CNT_PER_TEAM; j++) {
                     MemberRecord memberRecord = new MemberRecord();
                     memberRecord.setName("Member " + (i * (page + 1) * 10 + (j + 1)));
+                    memberRecord.setCreatedAt(LocalDateTime.now());
+                    memberRecord.setModifiedAt(LocalDateTime.now());
                     memberRecords.add(memberRecord);
                     memberName2teamName.put(memberRecord.getName(), teamRecord.getName());
                 }

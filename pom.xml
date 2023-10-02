@@ -206,6 +206,7 @@
 
                 <configuration>
                     <jdbc>
+<!--                        <url>jdbc:tc:mariadb:10.9.2://test</url>-->
                         <driver>org.mariadb.jdbc.Driver</driver>
                         <url>jdbc:mariadb://localhost:3306/jooq</url>
                         <user>root</user>
