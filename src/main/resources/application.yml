@@ -6,7 +6,7 @@ spring:
 #    url: jdbc:tc:mariadb:10.9.2://test
     url: [jdbc URL]
     username: [DB username]
-    password: [DB papssword]
+    password: [DB password]
     driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:
