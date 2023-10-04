@@ -63,3 +63,5 @@ spring:
 ```
 
 그 후, ```mvn clean install``` 혹은 ```mvn clean generate-sources``` 명령어를 통해 QClass와 jOOQ DSL 코드를 생성할 수 있습니다.
+
+Jpa 프로젝트에 jOOQ 도입: https://jaimemin.tistory.com/2320
